@@ -1,0 +1,111 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} UI Tables {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+  <div class="container-fluid py-4">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header pb-0">
+            <h4>My Assessments</h4>
+            <hr/>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Subject</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">topic</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">description</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Start date</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">deadline</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">More Information</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Submit</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for a in assess %}
+                  <a href="{% url 'assessmentinformation' a.id %}">
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div>
+                          <img src="/static/assets/img/team-2.jpg" class="avatar avatar-sm me-3">
+                        </div>
+                      
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="mb-0 text-sm">{{a.subject}}</h6>
+                          <p class="text-xs text-secondary mb-0">{{a.email}}: {{a.subject_code}}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">{{a.topic}}</p>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">{{a.description}}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-md font-weight-bold">{{a.start_date}}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-md font-weight-bold">{{a.end_date}}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-md font-weight-bold">{{a.doc}}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      {% if 'Submit' in a.sub_assessment %} 
+                        <a href="{% url 'asssessmentinformation' a.id %}">
+                          <span class="text-secondary text-md font-weight-bold">{{a.sub_assessment}}</span>
+                        </a>
+                      {% endif %}
+
+                      {% if 'Closed' in a.sub_assessment %} 
+                       
+                          <span class="text-secondary text-md font-weight-bold">{{a.sub_assessment}}</span>
+                          
+                      {% endif %}
+                    </td>
+                  </tr>
+                  </a>
+                  {% endfor %}
+             
+      
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    {% include "includes/footer.html" %}
+    
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+
+{% endblock javascripts %}

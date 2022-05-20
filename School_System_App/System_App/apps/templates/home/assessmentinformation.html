@@ -1,0 +1,73 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} UI Tables {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+  <div class="container-fluid py-4">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header pb-0">
+            <h4>Submission</h4>
+            <h5 class="text-sm opacity-4">Assessment Submission</h5>
+            <hr/>
+
+          </div>
+          <div class="card-body">
+              <h5>Topic</h5>
+              <p class="text-sm">{{assessment.topic}}</p>
+              <h5>Description</h5>
+              <p class="text-sm">{{assessment.description}}</p>
+              <h5>Subject</h5>
+              <div class="d-flex px-2 py-1">
+                <div>
+                  <img src="/static/assets/img/team-2.jpg" class="avatar avatar-md me-3">
+                </div>
+              
+                <div class="d-flex flex-column justify-content-center">
+                  <h6 class="mb-0 text-sm">{{as_subject.name}}</h6>
+                  <p class="text-xs text-secondary mb-0">Grade {{as_subject.grade}}</p>
+                </div>
+              </div>
+              <hr/>
+              <h5>Deadline date</h5>
+              <p class="text-sm">{{assessment.end_date}</p>
+              <h5>Submit Assessment</h5>
+              <hr/>
+              <p class="text-xxs">Allowed documents : PDF and  Word documents</p>
+              <form class="form" method="POST">
+                <input class="form-control" name="Answer_pdf" type="file"/>
+                <button class="btn bg-gradient-primary my-1 me-1" type="submit">Submit</button>
+              </form>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+
+    {% include "includes/footer.html" %}
+    
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+
+{% endblock javascripts %}

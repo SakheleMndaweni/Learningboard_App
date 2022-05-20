@@ -1,0 +1,98 @@
+{% extends 'layouts/base.html' %}
+{% block nevItem %}
+ {% include "includes/sidebarParent.html" %}
+{% endblock nevItem %}
+
+
+{% block title %} UI Tables {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+  <div class="container-fluid py-4">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header pb-0">
+            <h4>School Meetings</h4>
+            <p><small>New school meetings</small></p>
+            <hr/>
+           
+          </div>
+          <div class="card-body">
+            <h5>School Stuff Members</h5>
+            <h5 class="text-sm opacity-4">Click on the school member to create a meeting</h5>
+            <hr/>
+            <input class="form-control" placeholder="Search School Stuff Member"/>
+            
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">School Member</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phone Numbers</th>
+         
+                    
+                  </tr>
+                </thead>  
+                <tbody>
+                  {% for m in teachers %}
+                  <tr>
+                    
+                    <td>
+                      <a href="{% url 'createmeeting' m.id %}">
+                      <div class="d-flex px-2 py-1">
+                        <div>
+                          <img src="/static/assets/img/team-2.jpg" class="avatar avatar-sm me-3">
+                        </div>
+                      
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="mb-0 text-sm">{{m.name}} {{m.surname}}</h6>
+                          <p class="text-xs text-secondary mb-0">{{m.email}}</p>
+                        </div>
+                      </div>
+                    </a>
+                    </td>
+                    <td>
+                      <p class="text-xs text-secondary mb-0">{{m.phone}}</p>
+                    </td>
+                    
+                   
+                  
+                  </tr>
+                  {% endfor %}
+                 
+                 
+                </tbody>
+              </table>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+
+    {% include "includes/footer.html" %}
+    
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+
+{% endblock javascripts %}

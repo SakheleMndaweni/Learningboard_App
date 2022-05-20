@@ -1,0 +1,85 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} UI Tables {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+  <div class="container-fluid py-4">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header pb-0">
+            <h4>Events</h4>
+            <hr/>
+            <h5>School events</h5>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">topic</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">description</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Start date</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">End date</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for e in events %}
+                  
+                  <tr>
+              
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">{{e.topic}}</p>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">{{e.description}}</p>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">{{e.Startdate}}</p>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">{{e.Enddate}}</p>
+                    </td>
+
+                  </tr>
+                  
+                  {% endfor %}
+             
+      
+                </tbody>
+              </table>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+
+    {% include "includes/footer.html" %}
+    
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+
+{% endblock javascripts %}
